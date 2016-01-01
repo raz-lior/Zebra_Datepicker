@@ -60,7 +60,7 @@
             //  the position of the date picker relative to the element it is attached to. note that, regardless of this
             //  setting, the date picker's position will be automatically adjusted to fit in the viewport, if needed.
             //
-            //  possible values are "above" and "below"
+            //  possible values are "above" and "below" and "left" and "right"
             //
             //  default is "above"
             default_position: 'above',
