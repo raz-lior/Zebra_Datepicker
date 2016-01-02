@@ -235,6 +235,9 @@
             //  default is TRUE
             readonly_element: true,
 
+            //
+            rtl: false,
+
             //  should days from previous and/or next month be selectable when visible?
             //  note that if the value of this property is set to TRUE, the value of "show_other_months" will be considered
             //  TRUE regardless of the actual value!
@@ -1493,6 +1496,7 @@
                         // this will be computed relative to the icon's top-right corner (if the calendar icon exists), or
                         // relative to the element's top-right corner otherwise, to which the offsets given at initialization
                         // are added/subtracted
+                        right = undefined,
                         left = (undefined !== icon ? icon.offset().left + icon.outerWidth(true) : $element.offset().left + $element.outerWidth(true)) + plugin.settings.offset[0],
                         top = (undefined !== icon ? icon.offset().top : $element.offset().top) - datepicker_height + plugin.settings.offset[1],
 
@@ -1503,6 +1507,10 @@
                         // get browser window's horizontal and vertical scroll offsets
                         window_scroll_top = $(window).scrollTop(),
                         window_scroll_left = $(window).scrollLeft();
+
+                    // if the flow is rtl then position the calendar on the left side of the element/icon
+                    if(plugin.settings.rtl)
+                        left = (undefined !== icon ? icon.offset().left : $element.offset().left) - plugin.settings.offset[0] - datepicker_width;
 
                     if (plugin.settings.default_position == 'below')
                         top = (undefined !== icon ? icon.offset().top : $element.offset().top) + plugin.settings.offset[1];
