@@ -235,9 +235,6 @@
             //  default is TRUE
             readonly_element: true,
 
-            // this is used for controling the location of the icon, either left or right
-            rtl: false,
-
             //  should days from previous and/or next month be selectable when visible?
             //  note that if the value of this property is set to TRUE, the value of "show_other_months" will be considered
             //  TRUE regardless of the actual value!
