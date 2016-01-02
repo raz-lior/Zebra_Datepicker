@@ -38,6 +38,13 @@
             //  element being the date picker's container;
             always_visible: false,
 
+            // decides if clicking the element displays the control
+            //
+            // default is TRUE
+            //
+            // NOTE: if 'show_icon' is set to false, then setting this value will have no affect as it will be ignored
+            clickable_element: true,
+
             //  by default, the date picker is injected into the <body>; use this property to tell the library to inject
             //  the date picker into a custom element - useful when you want the date picker to open at a specific position
             //
@@ -60,7 +67,7 @@
             //  the position of the date picker relative to the element it is attached to. note that, regardless of this
             //  setting, the date picker's position will be automatically adjusted to fit in the viewport, if needed.
             //
-            //  possible values are "above" and "below" and "left" and "right"
+            //  possible values are "above" and "below"
             //
             //  default is "above"
             default_position: 'above',
@@ -227,6 +234,9 @@
             //
             //  default is TRUE
             readonly_element: true,
+
+            // this is used for controling the location of the icon, either left or right
+            rtl: false,
 
             //  should days from previous and/or next month be selectable when visible?
             //  note that if the value of this property is set to TRUE, the value of "show_other_months" will be considered
@@ -954,8 +964,11 @@
                         // a reference to the icon, as a global property
                         plugin.icon = icon;
 
-                        // the date picker will open when clicking both the icon and the element the plugin is attached to
-                        clickables = icon.add($element);
+                        
+                        if(plugin.settings.clickable_element)
+                              clickables = icon.add($element); // the date picker will open when clicking both the icon and the element the plugin is attached to
+                        else
+                              clickables = icon; // the date picker will open when clicking icon only
 
                     // if calendar icon is not visible, the date picker will open when clicking the element
                     } else clickables = $element;
