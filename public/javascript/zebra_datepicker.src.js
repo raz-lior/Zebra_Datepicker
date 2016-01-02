@@ -1496,9 +1496,8 @@
                         // this will be computed relative to the icon's top-right corner (if the calendar icon exists), or
                         // relative to the element's top-right corner otherwise, to which the offsets given at initialization
                         // are added/subtracted
-                        right = undefined,
-                        left = (undefined !== icon ? icon.offset().left + icon.outerWidth(true) : $element.offset().left + $element.outerWidth(true)) + plugin.settings.offset[0],
-                        top = (undefined !== icon ? icon.offset().top : $element.offset().top) - datepicker_height + plugin.settings.offset[1],
+                        left = (undefined !== icon && !plugin.settings.inside ? icon.offset().left + icon.outerWidth(true) : $element.offset().left + $element.outerWidth(true)) + plugin.settings.offset[0],
+                        top = $element.offset().top - datepicker_height + plugin.settings.offset[1],
 
                         // get browser window's width and height
                         window_width = $(window).width(),
@@ -1510,10 +1509,10 @@
 
                     // if the flow is rtl then position the calendar on the left side of the element/icon
                     if(plugin.settings.rtl)
-                        left = (undefined !== icon ? icon.offset().left : $element.offset().left) - plugin.settings.offset[0] - datepicker_width;
+                        left = (undefined !== icon && !plugin.settings.inside ? icon.offset().left : $element.offset().left) - plugin.settings.offset[0] - datepicker_width;
 
                     if (plugin.settings.default_position == 'below')
-                        top = (undefined !== icon ? icon.offset().top : $element.offset().top) + plugin.settings.offset[1];
+                        top = $element.offset().top + plugin.settings.offset[1];
 
                     // if date picker is outside the viewport, adjust its position so that it is visible
                     if (left + datepicker_width > window_scroll_left + window_width) left = window_scroll_left + window_width - datepicker_width;
